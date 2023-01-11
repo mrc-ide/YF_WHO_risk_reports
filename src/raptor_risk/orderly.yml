@@ -92,6 +92,10 @@ resources:
   - data/rad6.rds
   - data/age_prop.csv
   - data/YF_vac_cov.RDS
+  - data/shp/population.rds
+  - data/shp/shp_file.rds
+  - data/shp/shp_df.rds
+  - data/shp/shp_file_outline.rds
 
 # Optional name of a variable to make the SQL connection available to
 # the script.  Use this with care and avoid using any queries that
