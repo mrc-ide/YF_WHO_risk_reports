@@ -1,4 +1,7 @@
-load("data/shp/shapes.RData")
+population <- readRDS("data/shp/population.rds")
+shp_file <- readRDS("data/shp/shp_file.rds")
+shp_df <- readRDS("data/shp/shp_df.rds")
+shp_file_outline <- readRDS("data/shp/shp_file_outline.rds")
 
 shp_file@data$NAME_2[shp_file@data$NAME_2=="Bujenje (?)"] <- "Buliisa"
 
