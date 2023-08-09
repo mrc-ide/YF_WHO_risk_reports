@@ -1,0 +1,69 @@
+
+script: script.R
+
+
+artefacts: 
+    - data:
+        description: All data
+        filenames:
+        - location_starts.rds
+        - risk_results_extend.rds
+    - staticgraph:
+        description: All figures
+        filenames:
+        - map_risk_extend_mean.png
+        - map_risk_extend_median.png
+        - plot_risk_extend_mean.png
+        - plot_risk_extend_median.png
+      
+parameters:
+  ctry:
+    default: "Ethiopia"
+  size_input: 
+    default: 50
+  n_sample:   
+    default: 10
+
+
+packages: 
+  - data.table
+  - rgeos
+  - rgdal
+  - dplyr
+  - ggplot2
+  - tidyr
+  - sp
+  - Matrix
+  - magrittr
+  - lubridate
+  - RColorBrewer
+  - sf
+
+
+global_resources:
+  fun/run_risk_propagation.R: run_risk_propagation.R
+  fun/risk_calc_functions.R : risk_calc_functions.R
+  fun/plot_map_function.R   : plot_map_function.R
+  fun/fun_run_agg.R         : fun_run_agg.R
+  fun/fun_per_ctry.R        : fun_per_ctry.R
+  fun/data_source.R         : data_source.R
+  fun/data_entry_functions.R: data_entry_functions.R
+  fun/checking_functions.R  : checking_functions.R
+  
+  data/rad1.rds                     : data/rad1.rds
+  data/rad2.rds                     : data/rad2.rds
+  data/rad3.rds                     : data/rad3.rds
+  data/rad4.rds                     : data/rad4.rds
+  data/rad5.rds                     : data/rad5.rds
+  data/rad6.rds                     : data/rad6.rds
+  data/age_prop.csv                 : data/age_prop.csv
+  data/YF_vac_cov.RDS               : data/YF_vac_cov.RDS 
+  data/shp/population.rds           : data/shp/population.rds
+  data/shp/shp_file.rds             : data/shp/shp_file.rds 
+  data/shp/shp_df.rds               : data/shp/shp_df.rds 
+  data/shp/shp_file_outline.rds     : data/shp/shp_file_outline.rds
+  data/FOI_R0_med_values_af_yem.csv : data/FOI_R0_med_values_af_yem.csv
+
+
+
+
