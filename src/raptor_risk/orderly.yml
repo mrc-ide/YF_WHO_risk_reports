@@ -22,16 +22,16 @@ packages:
   - lubridate
 
 
-sources:
-  - fun/run_risk_propagation.R
-  - fun/risk_calc_functions.R
-  - fun/plot_map_function.R
-  - fun/fun_run_agg.R
-  - fun/fun_per_ctry.R
-  - fun/data_source.R
-  - fun/data_entry_functions.R
-  - fun/checking_functions.R
-  
+global_resources:
+  fun/run_risk_propagation.R: run_risk_propagation.R
+  fun/risk_calc_functions.R : risk_calc_functions.R
+  fun/plot_map_function.R   : plot_map_function.R
+  fun/fun_run_agg.R         : fun_run_agg.R
+  fun/fun_per_ctry.R        : fun_per_ctry.R
+  fun/data_source.R         : data_source.R
+  fun/data_entry_functions.R: data_entry_functions.R
+  fun/checking_functions.R  : checking_functions.R
+
 
 resources:
   - data/rad1.rds

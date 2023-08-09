@@ -52,3 +52,7 @@ database: ~
 #
 # The fields must not clash with built-in field names.
 fields: ~
+
+
+global_resources:
+  globals

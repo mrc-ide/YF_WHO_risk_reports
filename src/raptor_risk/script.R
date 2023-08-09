@@ -1,5 +1,7 @@
 options(dplyr.summarise.inform = FALSE)
 
+R.utils::sourceDirectory("fun", modifiedOnly=FALSE)
+
 all_ctrys <- c("Ethiopia", "Sudan","Eritrea", "Djibouti", "Kenya", "South Sudan", "Somalia", "Rwanda", "Burundi", "Tanzania", "Uganda")
 ctrys_inside <- c("Djibouti", "Somalia")
 ctrys_outside <- all_ctrys[!all_ctrys %in% ctrys_inside]
