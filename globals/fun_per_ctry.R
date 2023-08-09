@@ -4,7 +4,7 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
   
   sample_loc <- sample(in_template_ctry$District_id, prob = in_template_ctry$FOI_med, size = size_input, replace = TRUE)
   
-  saveRDS(sample_loc, paste0("location_starts_", ctry,".rds"))
+  saveRDS(sample_loc, paste0("location_starts.rds"))
   
   df_out <- NULL
   #run for all locations
@@ -29,7 +29,7 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
     summarise(risk_score = mean(risk_score, na.rm = TRUE))
   
   #plot the map
-  png(filename = paste0("map_risk_extend_mean_",ctry,".png"), height = 1400, width=1400)
+  png(filename = paste0("map_risk_extend_mean.png"), height = 1400, width=1400)
   report_plot_map_function( out$this_shape, df_ave, shp_file_outline)
   dev.off()
   
@@ -38,7 +38,7 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
     summarise(risk_score = median(risk_score, na.rm = TRUE))
   
   #plot the map median
-  png(filename = paste0("map_risk_extend_median_", ctry, ".png"), height = 1400, width=1400)
+  png(filename = paste0("map_risk_extend_median.png"), height = 1400, width=1400)
   report_plot_map_function( out$this_shape, df_ave, shp_file_outline)
   dev.off()
   
@@ -60,7 +60,7 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
     MetBrewer::scale_color_met_d(name = "Renoir")+
     theme(legend.position = "none")
   
-  ggsave(paste0("plot_risk_extend_median_",ctry, ".png"), bg = "white")
+  ggsave(paste0("plot_risk_extend_median.png"), bg = "white")
   
   df_sum2 <- df_out %>% group_by(start_loc, Name) %>% mutate(appears = sum(risk_score)>0,
                                                              n_dist = length(unique(District_id))) %>% 
@@ -81,8 +81,8 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
     theme(legend.position = "none")+
     scale_y_log10()
   
-  ggsave(paste0("plot_risk_extend_mean_",ctry, ".png"), bg = "white")
+  ggsave(paste0("plot_risk_extend_mean.png"), bg = "white")
   
-  saveRDS(df_out, paste0("risk_results_extend", ctry, ".rds"))
+  saveRDS(df_out, paste0("risk_results_extend.rds"))
   
 }

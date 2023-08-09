@@ -3,10 +3,26 @@ script: script.R
 
 
 artefacts: 
-  staticgraph:
-    description: All figures
-    filenames:
-      - table_of_propn_nonzero_neighbour.png
+    - data:
+        description: All data
+        filenames:
+        - location_starts.rds
+        - risk_results_extend.rds
+    - staticgraph:
+        description: All figures
+        filenames:
+        - map_risk_extend_mean.png
+        - map_risk_extend_median.png
+        - plot_risk_extend_mean.png
+        - plot_risk_extend_median.png
+      
+parameters:
+  ctry:
+    default: "Ethiopia"
+  size_input: 
+    default: 50
+  n_sample:   
+    default: 10
 
 
 packages: 
@@ -20,6 +36,8 @@ packages:
   - Matrix
   - magrittr
   - lubridate
+  - RColorBrewer
+  - sf
 
 
 global_resources:
@@ -46,5 +64,6 @@ resources:
   - data/shp/shp_file.rds
   - data/shp/shp_df.rds
   - data/shp/shp_file_outline.rds
+  - data/FOI_R0_med_values_af_yem.csv
 
 

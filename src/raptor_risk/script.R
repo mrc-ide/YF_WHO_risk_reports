@@ -1,25 +1,21 @@
 options(dplyr.summarise.inform = FALSE)
 
-R.utils::sourceDirectory("fun", modifiedOnly=FALSE)
+R.utils::sourceDirectory("fun", modifiedOnly = FALSE)
 
-all_ctrys <- c("Ethiopia", "Sudan","Eritrea", "Djibouti", "Kenya", "South Sudan", "Somalia", "Rwanda", "Burundi", "Tanzania", "Uganda")
-ctrys_inside <- c("Djibouti", "Somalia")
-ctrys_outside <- all_ctrys[!all_ctrys %in% ctrys_inside]
+in_template <- make_template(c("Ethiopia", "Sudan",
+                               "Eritrea", "Djibouti", "Kenya", 
+                               "South Sudan", "Somalia", "Rwanda", "Burundi", "Tanzania", "Uganda"))
 
-neighbours <- c("Eritrea", "Ethiopia", "Kenya")
-neighboursx2 <- c("Ethiopia", "Sudan", "Eritrea", "Kenya", "South Sudan", "Tanzania", "Uganda")
+in_template <- in_template %>% mutate(region_id = gsub("_$", "", gsub('.{2}$', '', District_id)))
 
-fun_run_agg(list_of_ctrys = neighbours, out_name = "neighbours")
+foi <- read.csv("data/FOI_R0_med_values_af_yem.csv", stringsAsFactors = FALSE)
+foi <- foi %>% mutate(region_id = gsub("\\.", "_", gsub('.{2}$', '', regions)))
 
-fun_run_agg(list_of_ctrys = neighboursx2, out_name = "neighboursx2")
+# filter foi to template
+foi <- foi %>% filter(region_id %in% in_template$region_id)
 
-propn_zero_neighbours <- readRDS("propn_zero_neighbours.rds")
+# join 'em up
+in_template <- in_template %>% left_join(foi %>% dplyr::select(region_id, FOI_med), by = "region_id")
+in_template <- in_template %>% mutate(FOI_med = ifelse(is.na(FOI_med), 0, FOI_med))
 
-propn_zero_neighbours %>%
-  arrange(propn_zero) %>%
-  head(n=20) %>%
-  mutate(propn_zero = round(propn_zero*100,2)) %>%
-  rename(`Proportion of simulations with zero risk (%)` = propn_zero) %>%
-  flextable::flextable(cwidth = 2) %>%
-  flextable::save_as_image(path = "table_of_propn_nonzero_neighbour.png")
-
+fun_make_output_country_start(in_template, foi, ctry, size_input, n_sample)
