@@ -62,7 +62,7 @@ global_resources:
   data/shp/shp_file.rds             : data/shp/shp_file.rds 
   data/shp/shp_df.rds               : data/shp/shp_df.rds 
   data/shp/shp_file_outline.rds     : data/shp/shp_file_outline.rds
-  data/FOI_R0_med_values_af_yem.csv : data/FOI_R0_med_values_af_yem.csv
+  data/FOI_R0_med_values_af_yem_new.csv : data/FOI_R0_med_values_af_yem_new.csv
 
 
 
