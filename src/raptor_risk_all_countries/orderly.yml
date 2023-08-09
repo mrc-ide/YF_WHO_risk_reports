@@ -1,26 +1,26 @@
 script: script.R
 
 
-artefacts: 
-  staticgraph:
-    description: All figures
-    filenames:
-      - table_of_propn_nonzero_neighbour.png
-      - map_risk_extend_mean_neighbours.png
-      - map_risk_extend_mean_neighboursx2.png
-      - map_risk_extend_median_neighbours.png
-      - map_risk_extend_median_neighboursx2.png
-      - map_start_locations_neighbours.png
-      - map_start_locations_neighboursx2.png
-      - plot_risk_extend_mean_neighbours.png
-      - plot_risk_extend_mean_neighboursx2.png
-      - plot_risk_extend_median_neighbours.png
-      - plot_risk_extend_median_neighboursx2.png
-  data:
-    description: All data
-    filenames:
-      - propn_zero_neighbours.rds
-      - propn_zero_neighboursx2.rds
+artefacts:
+    - staticgraph:
+        description: All figures
+        filenames:
+        - table_of_propn_nonzero_neighbour.png
+        - map_risk_extend_mean_neighbours.png
+        - map_risk_extend_mean_neighboursx2.png
+        - map_risk_extend_median_neighbours.png
+        - map_risk_extend_median_neighboursx2.png
+        - map_start_locations_neighbours.png
+        - map_start_locations_neighboursx2.png
+        - plot_risk_extend_mean_neighbours.png
+        - plot_risk_extend_mean_neighboursx2.png
+        - plot_risk_extend_median_neighbours.png
+        - plot_risk_extend_median_neighboursx2.png
+    - data:
+        description: All data
+        filenames:
+        - propn_zero_neighbours.rds
+        - propn_zero_neighboursx2.rds
 
 packages: 
   - data.table
@@ -62,8 +62,38 @@ global_resources:
   data/FOI_R0_med_values_af_yem.csv : data/FOI_R0_med_values_af_yem.csv
 
 depends:
-  raptor_risk_per_country:
-    id: latest(parameter:ctry == 'Ethiopia')
-    use: 
-      location_starts_Ethiopia.rds: location_starts.rds
-      risk_results_Ethiopia.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Ethiopia')
+      use: 
+        location_starts_Ethiopia.rds: location_starts.rds
+        risk_results_Ethiopia.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Sudan')
+      use: 
+        location_starts_Sudan.rds: location_starts.rds
+        risk_results_Sudan.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Eritrea')
+      use: 
+        location_starts_Eritrea.rds: location_starts.rds
+        risk_results_Eritrea.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Kenya')
+      use: 
+        location_starts_Kenya.rds: location_starts.rds
+        risk_results_Kenya.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'South Sudan')
+      use: 
+        location_starts_South Sudan.rds: location_starts.rds
+        risk_results_South Sudan.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Tanzania')
+      use: 
+        location_starts_Tanzania.rds: location_starts.rds
+        risk_results_Tanzania.rds: risk_results_extend.rds
+  - raptor_risk_per_country:
+      id: latest(parameter:ctry == 'Uganda')
+      use: 
+        location_starts_Uganda.rds: location_starts.rds
+        risk_results_Uganda.rds: risk_results_extend.rds
