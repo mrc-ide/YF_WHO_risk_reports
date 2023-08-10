@@ -6,10 +6,10 @@ This repository was used to develop analyses for a specific WHO request to look 
 
 The code can be foudn in `src` folder- there are two reports, one for risk per country and one for risk in all countries. The risk per country must be run for all relevant countries first, then the risk for all countries (see orderly documentation for running a report). The outputs can be found in the archive folder.
 
-# orderly
+# orderly2
 
-This is an [`orderly`](https://github.com/vimc/orderly) project.  The directories are:
+This is an [`orderly`](https://mrc-ide.github.io/orderly2/index.html) project.  The directories are:
 
 * `src`: create new reports here
 * `archive`: versioned results of running your report
-* `data`: copies of data used in the reports
+* `shared` : common functions and data files
