@@ -1,5 +1,7 @@
 options(dplyr.summarise.inform = FALSE)
 
+R.utils::sourceDirectory("fun", modifiedOnly=FALSE)
+
 neighbours <- c("Eritrea", "Ethiopia", "Kenya")
 neighboursx2 <- c("Ethiopia", "Sudan", "Eritrea", "Kenya", "South Sudan", "Tanzania", "Uganda")
 

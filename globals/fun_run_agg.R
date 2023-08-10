@@ -12,7 +12,7 @@ fun_run_agg <- function(list_of_ctrys, out_name, pop=FALSE){
   results <- bind_rows(lapply(results_fil, readRDS))
   
   # get shaepfile
-  out  <-  fun_risk_propagate_generation(make_template(all_ctrys) %>% mutate(Confirmed_cases = 1), n_gen = 1)
+  out  <-  fun_risk_propagate_generation(make_template(list_of_ctrys) %>% mutate(Confirmed_cases = 1), n_gen = 1)
   
   #-----------------------------------------------------------------------------#
   # make some plots
