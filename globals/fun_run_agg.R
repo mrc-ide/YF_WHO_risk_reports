@@ -57,19 +57,20 @@ fun_run_agg <- function(list_of_ctrys, out_name, pop=FALSE){
     group_by(Name) %>% summarise(country_risk_ave = median(risk_score, na.rm = TRUE)/n_dist[1],
                                  n_appear = sum(appears)/n())
   
-  df_sum %>%
+  p <- df_sum %>%
     filter( country_risk_ave>0) %>%
+    mutate(is_ds= Name %in% c("Djibouti", "Somalia")) %>%
     ggplot()+
-    aes(x =n_appear, y = country_risk_ave, colour = Name, label = Name )+
+    aes(x =n_appear, y = country_risk_ave, colour = is_ds, label = Name )+
     geom_point()+
     geom_label(vjust = "inward", hjust = "inward")+
     theme_minimal()+
     labs(x = "Proportion of samples where country appears",
          y = "Median risk per country standardised by number of districts")+
-    scale_color_manual(values = MetBrewer::met.brewer("Renoir", length(unique(df_sum$Name)), type = "continuous"))+
-    theme(legend.position = "none")
+    scale_color_manual(values = MetBrewer::met.brewer("Renoir", 7, type = "continuous")[c(1,5)])+
+    theme(legend.position = "none", text=element_text(size=14))
   
-  ggsave(paste0("plot_risk_extend_median_",out_name, ".png"), bg = "white")
+  ggsave(plot=p, filename=paste0("plot_risk_extend_median_",out_name, ".png"), bg = "white")
   
   df_sum2 <- results %>% group_by(start_loc, Name) %>% mutate(appears = sum(risk_score)>0,
                                                               n_dist = length(unique(District_id))) %>% 
@@ -78,19 +79,20 @@ fun_run_agg <- function(list_of_ctrys, out_name, pop=FALSE){
   
   df_sum2 <- df_sum2 %>% filter( country_risk_ave>1e-3)
   
-  df_sum2 %>%
+  p2 <- df_sum2 %>%
+    mutate(is_ds= Name %in% c("Djibouti", "Somalia")) %>%
     ggplot()+
-    aes(x =n_appear, y = country_risk_ave, colour = Name, label = Name )+
+    aes(x =n_appear, y = country_risk_ave, colour = is_ds, label = Name )+
     geom_point()+
     geom_label(vjust = "inward", hjust = "inward")+
     theme_minimal()+
     labs(x = "Proportion of samples where country appears",
          y = "Mean risk per country standardised by number of districts (risk>0.001)")+
-    scale_color_manual(values = MetBrewer::met.brewer("Renoir", length(unique(df_sum2$Name)), type = "continuous"))+
-    theme(legend.position = "none")+
+    scale_color_manual(values = MetBrewer::met.brewer("Renoir", 7, type = "continuous")[c(1,5)])+
+    theme(legend.position = "none", text=element_text(size=14))+
     scale_y_log10()
   
-  ggsave(paste0("plot_risk_extend_mean_",out_name, ".png"), bg = "white")
+  ggsave(plot=p2, filename=paste0("plot_risk_extend_mean_",out_name, ".png"), bg = "white")
   
   # zeros
   results %>% 
