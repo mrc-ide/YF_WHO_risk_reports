@@ -40,10 +40,24 @@ orderly2::orderly_dependency(
 
 orderly2::orderly_artefact(
   "All figures",
-  c("table_of_propn_nonzero_neighbour.png", "map_risk_extend_mean_neighbours.png", "map_risk_extend_mean_neighboursx2.png", "map_risk_extend_median_neighbours.png", "map_risk_extend_median_neighboursx2.png", "map_start_locations_neighbours.png", "map_start_locations_neighboursx2.png", "plot_risk_extend_mean_neighbours.png", "plot_risk_extend_mean_neighboursx2.png", "plot_risk_extend_median_neighbours.png", "plot_risk_extend_median_neighboursx2.png"))
+  c("table_of_propn_nonzero_neighbour.png", 
+    "map_risk_extend_mean_neighbours.png", 
+    "map_risk_extend_mean_neighboursx2.png", 
+    "map_risk_extend_median_neighbours.png", 
+    "map_risk_extend_median_neighboursx2.png", 
+    "map_start_locations_neighbours.png", 
+    "map_start_locations_neighboursx2.png", 
+    "plot_risk_extend_mean_neighbours.png", 
+    "plot_risk_extend_mean_neighboursx2.png", 
+    "plot_risk_extend_median_neighbours.png", 
+    "plot_risk_extend_median_neighboursx2.png"))
+
 orderly2::orderly_artefact(
   "All data",
-  c("propn_zero_neighbours.rds", "propn_zero_neighboursx2.rds"))
+  c("propn_zero_neighbours.rds", 
+    "propn_zero_neighboursx2.rds",
+    "all_DS_results_neighbours.rds",
+    "all_DS_results_neighboursx2.rds"))
 
 library(data.table)
 library(rgeos)

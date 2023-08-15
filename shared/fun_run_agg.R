@@ -100,4 +100,10 @@ fun_run_agg <- function(list_of_ctrys, out_name, pop=FALSE){
     group_by(Name, Province, District) %>% 
     summarise(propn_zero = sum(risk_score==0)/n()) %>%
     saveRDS(paste0("propn_zero_", out_name, ".rds"))
+  
+  # main results
+  results %>%
+    filter(Name %in% c("Djibouti", "Somalia")) %>%
+    distinct() %>%
+    saveRDS(paste0("all_DS_results_", out_name, ".rds"))
 }
