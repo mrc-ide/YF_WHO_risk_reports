@@ -125,8 +125,14 @@ make_risk_df = function(data_entered, cross_border_scaling = 1){
   district_external_index = Diagonal(x = cross_border_scaling, n= ncol(move_use)) 
   diag(district_external_index)[grep(paste0(ISO_internal, collapse = "|"), rownames(move_use))] = 1
   
+  namc <- colnames(move_use)
+  namr <- rownames(move_use)
+  
   #scale external 
   move_use = move_use %*% district_external_index
+  
+  colnames(move_use) <- namc 
+  rownames(move_use) <- namr
   
   #----------------------------------#
   # subset everything by movement

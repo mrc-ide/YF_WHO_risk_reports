@@ -1,6 +1,22 @@
 orderly2::orderly_strict_mode()
 
-orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", "fun/risk_calc_functions.R" = "risk_calc_functions.R", "fun/plot_map_function.R" = "plot_map_function.R", "fun/fun_run_agg.R" = "fun_run_agg.R", "fun/fun_per_ctry.R" = "fun_per_ctry.R", "fun/data_source.R" = "data_source.R", "fun/data_entry_functions.R" = "data_entry_functions.R", "fun/checking_functions.R" = "checking_functions.R", "data/rad1.rds" = "data/rad1.rds", "data/rad2.rds" = "data/rad2.rds", "data/rad3.rds" = "data/rad3.rds", "data/rad4.rds" = "data/rad4.rds", "data/rad5.rds" = "data/rad5.rds", "data/rad6.rds" = "data/rad6.rds", "data/age_prop.csv" = "data/age_prop.csv", "data/YF_vac_cov.RDS" = "data/YF_vac_cov.RDS", "data/shp/population.rds" = "data/shp/population.rds", "data/shp/shp_file.rds" = "data/shp/shp_file.rds", "data/shp/shp_df.rds" = "data/shp/shp_df.rds", "data/shp/shp_file_outline.rds" = "data/shp/shp_file_outline.rds", "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
+orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", 
+                                  "fun/risk_calc_functions.R" = "risk_calc_functions.R", 
+                                  "fun/plot_map_function.R" = "plot_map_function.R", 
+                                  "fun/fun_run_agg.R" = "fun_run_agg.R", 
+                                  "fun/fun_per_ctry.R" = "fun_per_ctry.R", 
+                                  "fun/data_source.R" = "data_source.R", 
+                                  "fun/data_entry_functions.R" = "data_entry_functions.R", 
+                                  "fun/checking_functions.R" = "checking_functions.R", 
+                                  "data/rad1.rds" = "data/rad1.rds", "data/rad2.rds" = "data/rad2.rds", 
+                                  "data/rad3.rds" = "data/rad3.rds", "data/rad4.rds" = "data/rad4.rds", 
+                                  "data/rad5.rds" = "data/rad5.rds", "data/rad6.rds" = "data/rad6.rds", 
+                                  "data/age_prop.csv" = "data/age_prop.csv", "data/YF_vac_cov.RDS" = "data/YF_vac_cov.RDS", 
+                                  "data/shp/population.rds" = "data/shp/population.rds", 
+                                  "data/shp/shp_file.rds" = "data/shp/shp_file.rds", 
+                                  "data/shp/shp_df.rds" = "data/shp/shp_df.rds", 
+                                  "data/shp/shp_file_outline.rds" = "data/shp/shp_file_outline.rds", 
+                                  "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
 
 orderly2::orderly_dependency(
   "raptor_risk_per_country",
