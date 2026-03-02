@@ -76,8 +76,7 @@ orderly2::orderly_artefact(
     "all_DS_results_neighboursx2.rds"))
 
 library(data.table)
-library(rgeos)
-library(rgdal)
+library(sf)
 library(dplyr)
 library(ggplot2)
 library(tidyr)

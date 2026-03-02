@@ -1,6 +1,6 @@
 orderly2::orderly_strict_mode()
 
-orderly2::orderly_parameters(ctry = "Ethiopia", size_input = 50L, n_sample = 10L)
+orderly2::orderly_parameters(ctry = "Ethiopia", size_input = 50L, n_sample = 1L)
 
 orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", 
                                   "fun/risk_calc_functions.R" = "risk_calc_functions.R", 
@@ -17,15 +17,14 @@ orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propa
                                   "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
 
 orderly2::orderly_artefact(
-  "All data",
-  c("location_starts.rds", "risk_results_extend.rds"))
+  description="All data",
+  files=c("location_starts.rds", "risk_results_extend.rds"))
 orderly2::orderly_artefact(
-  "All figures",
-  c("map_risk_extend_mean.png", "map_risk_extend_median.png", "plot_risk_extend_mean.png", "plot_risk_extend_median.png"))
+  description="All figures",
+  files=c("map_risk_extend_mean.png", "map_risk_extend_median.png", "plot_risk_extend_mean.png", "plot_risk_extend_median.png"))
 
 library(data.table)
-library(rgeos)
-library(rgdal)
+library(sf)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -37,6 +36,8 @@ library(RColorBrewer)
 library(sf)
 
 options(dplyr.summarise.inform = FALSE)
+
+set.seed(1)
 
 R.utils::sourceDirectory("fun", modifiedOnly = FALSE)
 

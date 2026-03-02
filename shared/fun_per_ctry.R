@@ -69,7 +69,7 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
   
   
   df_sum2 %>%
-    filter( country_risk_ave>0) %>%
+    filter( country_risk_ave>1e-4) %>%
     ggplot()+
     aes(x =n_appear, y = country_risk_ave, colour = Name, label = Name )+
     geom_point()+
@@ -77,7 +77,6 @@ fun_make_output_country_start <- function(in_template, foi, ctry, size_input = 1
     theme_minimal()+
     labs(x = "Proportion of samples where country appears",
          y = "Mean risk per country standardised by number of districts")+
-    MetBrewer::scale_color_met_d(name = "Renoir")+
     theme(legend.position = "none")+
     scale_y_log10()
   
