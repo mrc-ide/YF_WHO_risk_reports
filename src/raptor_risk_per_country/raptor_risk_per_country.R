@@ -1,8 +1,8 @@
-orderly2::orderly_strict_mode()
+orderly::orderly_strict_mode()
 
-orderly2::orderly_parameters(ctry = "Ethiopia", size_input = 50L, n_sample = 1L)
+orderly::orderly_parameters(ctry = "Ethiopia", size_input = 50L, n_sample = 1L)
 
-orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", 
+orderly::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", 
                                   "fun/risk_calc_functions.R" = "risk_calc_functions.R", 
                                   "fun/plot_map_function.R" = "plot_map_function.R", 
                                   "fun/fun_run_agg.R" = "fun_run_agg.R", "fun/fun_per_ctry.R" = "fun_per_ctry.R", 
@@ -16,10 +16,10 @@ orderly2::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propa
                                   "data/shp/shp_file_outline.rds" = "data/shp/shp_file_outline.rds",
                                   "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
 
-orderly2::orderly_artefact(
+orderly::orderly_artefact(
   description="All data",
   files=c("location_starts.rds", "risk_results_extend.rds"))
-orderly2::orderly_artefact(
+orderly::orderly_artefact(
   description="All figures",
   files=c("map_risk_extend_mean.png", "map_risk_extend_median.png", "plot_risk_extend_mean.png", "plot_risk_extend_median.png"))
 

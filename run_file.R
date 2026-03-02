@@ -1,4 +1,6 @@
 # running instructions#
+library(orderly)
+options(orderly.git_error_ignore= TRUE)
 
 lapply(c("Ethiopia", "Sudan", "Eritrea", "Kenya", "South Sudan", "Tanzania", "Uganda"),
        FUN=function(x)orderly::orderly_run("raptor_risk_per_country", 
