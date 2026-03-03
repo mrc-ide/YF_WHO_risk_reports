@@ -1,22 +1,22 @@
 orderly::orderly_strict_mode()
 
 orderly::orderly_shared_resource("fun/run_risk_propagation.R" = "run_risk_propagation.R", 
-                                  "fun/risk_calc_functions.R" = "risk_calc_functions.R", 
-                                  "fun/plot_map_function.R" = "plot_map_function.R", 
-                                  "fun/fun_run_agg.R" = "fun_run_agg.R", 
-                                  "fun/fun_per_ctry.R" = "fun_per_ctry.R", 
-                                  "fun/data_source.R" = "data_source.R", 
-                                  "fun/data_entry_functions.R" = "data_entry_functions.R", 
-                                  "fun/checking_functions.R" = "checking_functions.R", 
-                                  "data/rad1.rds" = "data/rad1.rds", "data/rad2.rds" = "data/rad2.rds", 
-                                  "data/rad3.rds" = "data/rad3.rds", "data/rad4.rds" = "data/rad4.rds", 
-                                  "data/rad5.rds" = "data/rad5.rds", "data/rad6.rds" = "data/rad6.rds", 
-                                  "data/age_prop.csv" = "data/age_prop.csv", "data/YF_vac_cov.RDS" = "data/YF_vac_cov.RDS", 
-                                  "data/shp/population.rds" = "data/shp/population.rds", 
-                                  "data/shp/shp_file.rds" = "data/shp/shp_file.rds", 
-                                  "data/shp/shp_df.rds" = "data/shp/shp_df.rds", 
-                                  "data/shp/shp_file_outline.rds" = "data/shp/shp_file_outline.rds", 
-                                  "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
+                                 "fun/risk_calc_functions.R" = "risk_calc_functions.R", 
+                                 "fun/plot_map_function.R" = "plot_map_function.R", 
+                                 "fun/fun_run_agg.R" = "fun_run_agg.R", 
+                                 "fun/fun_per_ctry.R" = "fun_per_ctry.R", 
+                                 "fun/data_source.R" = "data_source.R", 
+                                 "fun/data_entry_functions.R" = "data_entry_functions.R", 
+                                 "fun/checking_functions.R" = "checking_functions.R", 
+                                 "data/rad1.rds" = "data/rad1.rds", "data/rad2.rds" = "data/rad2.rds", 
+                                 "data/rad3.rds" = "data/rad3.rds", "data/rad4.rds" = "data/rad4.rds", 
+                                 "data/rad5.rds" = "data/rad5.rds", "data/rad6.rds" = "data/rad6.rds", 
+                                 "data/age_prop.csv" = "data/age_prop.csv", "data/YF_vac_cov.RDS" = "data/YF_vac_cov.RDS", 
+                                 "data/shp/population.rds" = "data/shp/population.rds", 
+                                 "data/shp/shp_file.rds" = "data/shp/shp_file.rds", 
+                                 "data/shp/shp_df.rds" = "data/shp/shp_df.rds", 
+                                 "data/shp/shp_file_outline.rds" = "data/shp/shp_file_outline.rds", 
+                                 "data/FOI_R0_med_values_af_yem_new.csv" = "data/FOI_R0_med_values_af_yem_new.csv")
 
 orderly::orderly_dependency(
   "raptor_risk_per_country",
@@ -73,7 +73,8 @@ orderly::orderly_artefact(
   c("propn_zero_neighbours.rds", 
     "propn_zero_neighboursx2.rds",
     "all_DS_results_neighbours.rds",
-    "all_DS_results_neighboursx2.rds"))
+    "all_DS_results_neighboursx2.rds",
+    "table_propn.csv"))
 
 library(data.table)
 library(sf)
@@ -100,11 +101,15 @@ fun_run_agg(list_of_ctrys = neighboursx2, out_name = "neighboursx2")
 
 propn_zero_neighbours <- readRDS("propn_zero_neighbours.rds")
 
-propn_zero_neighbours %>%
+table_propn <- propn_zero_neighbours %>%
   arrange(propn_zero) %>%
   head(n=20) %>%
   mutate(propn_zero = round(propn_zero*100,2)) %>%
-  rename(`Proportion of simulations with zero risk (%)` = propn_zero) %>%
+  rename(`Proportion of simulations with zero risk (%)` = propn_zero) 
+
+table_propn %>%
   flextable::flextable(cwidth = 2) %>%
   flextable::save_as_image(path = "table_of_propn_nonzero_neighbour.png")
+
+write.csv(table_propn, "table_propn.csv", row.names = FALSE)
 
